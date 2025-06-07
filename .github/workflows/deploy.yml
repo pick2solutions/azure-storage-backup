@@ -32,6 +32,10 @@ jobs:
 
       - name: Terraform Plan
         run: terraform plan -out=tfplan
+        env:
+            TF_VAR_azure_client_id: ${{ vars.AZURE_CLIENT_ID }}
+            TF_VAR_azure_subscription_id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
+            TF_VAR_azure_tenant_id: ${{ vars.AZURE_TENANT_ID }}
 
       - name: Manual Approval
         uses: trstringer/manual-approval@v1
@@ -42,3 +46,7 @@ jobs:
 
       - name: Terraform Apply
         run: terraform apply -auto-approve tfplan
+        env:
+            TF_VAR_azure_client_id: ${{ vars.AZURE_CLIENT_ID }}
+            TF_VAR_azure_subscription_id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
+            TF_VAR_azure_tenant_id: ${{ vars.AZURE_TENANT_ID }}
